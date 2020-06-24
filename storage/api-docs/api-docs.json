@@ -1,0 +1,150 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Example TRON API Documentation",
+        "description": "Example TRON API built with Laravel",
+        "contact": {
+            "email": "alekx.tabor@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "Example TRON API Server"
+        }
+    ],
+    "paths": {
+        "/wallets": {
+            "post": {
+                "tags": [
+                    "Wallets"
+                ],
+                "summary": "Create new wallet",
+                "description": "Returns wallet data",
+                "operationId": "createWallet",
+                "requestBody": {},
+                "responses": {
+                    "201": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Wallet"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error"
+                    }
+                }
+            }
+        },
+        "/wallets/balance/{wallet:address}": {
+            "get": {
+                "tags": [
+                    "Wallets"
+                ],
+                "summary": "Get wallet balance",
+                "description": "Returns wallet balance",
+                "operationId": "getWalletBalance",
+                "parameters": [
+                    {
+                        "name": "wallet:address",
+                        "in": "path",
+                        "description": "Wallet address",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "balance": {
+                                            "title": "Balance",
+                                            "description": "Wallet balance",
+                                            "format": "int64",
+                                            "example": 29887074430
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Wallet not found"
+                    },
+                    "500": {
+                        "description": "Error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Wallet": {
+                "title": "Wallet",
+                "description": "Wallet model",
+                "properties": {
+                    "id": {
+                        "title": "ID",
+                        "description": "ID",
+                        "type": "integer",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "address": {
+                        "title": "Address",
+                        "description": "Address of the new wallet",
+                        "type": "string",
+                        "format": "base58",
+                        "example": "TUhpmQ4z8cb9rYgGQyEqSdW2ntaQysbBL8"
+                    },
+                    "secret": {
+                        "title": "Secret",
+                        "description": "Secret (private key) of the new wallet",
+                        "type": "string",
+                        "example": "dd3ddf3e320321c806cf054f096ded50075fdfef1f99f9d06c2ed5ca9cca7ae5"
+                    },
+                    "created_at": {
+                        "title": "Created at",
+                        "description": "Created at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-06-24 17:50:45"
+                    },
+                    "updated_at": {
+                        "title": "Updated at",
+                        "description": "Updated at",
+                        "type": "string",
+                        "format": "datetime",
+                        "example": "2020-06-24 19:20:09"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Wallet"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Wallets",
+            "description": "API Endpoints of Wallets"
+        }
+    ]
+}
