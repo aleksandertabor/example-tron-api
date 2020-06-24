@@ -12,3 +12,4 @@
 */
 
 Route::post('wallets', 'TronController@createWallet');
+Route::get('wallets/balance/{wallet:address}', 'TronController@getWalletBalance');

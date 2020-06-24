@@ -34,7 +34,12 @@ class TronController extends Controller
         ]), 201);
     }
 
-    public function getWalletBalance()
+    public function getWalletBalance(Wallet $wallet)
     {
+        $balance = $this->api->getBalance($wallet->address);
+
+        return response()->json([
+            'balance' => $balance,
+        ]);
     }
 }
