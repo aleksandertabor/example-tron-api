@@ -38,7 +38,7 @@ sudo chmod -R 775 /var/www/YOURPROJECTNAME/storage
 > Documentation generated with OpenAPI (Swagger) standard
 
 Available on:
-- [`api-docs.json`](/storage/docs/api-docs.json) JSON file that you can preview online on [Swagger Editor](https://editor.swagger.io/)
+- [`api-docs.json`](/storage/api-docs/api-docs.json) JSON file that you can preview online on [Swagger Editor](https://editor.swagger.io/)
 
 or
 
